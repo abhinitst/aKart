@@ -1,11 +1,15 @@
 package com.abhi.aKart.entities;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +33,17 @@ public class Product {
 	private String color;
 	private int discount;
 	private float unitWieght;
+	
+	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name = "category_id",nullable = false)
+	private Category category;
+	
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 	public int getProductId() {
 		return productId;
 	}
