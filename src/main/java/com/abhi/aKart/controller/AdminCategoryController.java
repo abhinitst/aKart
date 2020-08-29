@@ -1,6 +1,5 @@
 package com.abhi.aKart.controller;
 
-
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -16,6 +15,7 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -105,6 +105,13 @@ public class AdminCategoryController {
 			}
 		}
 		return new ResponseEntity<Object>(allCategory, HttpStatus.OK);
+
+	}
+
+	@RequestMapping("/search")
+	public List<Category> CategorySearch(@Param("keyword") String keyword) {
+		List<Category> listProducts = cotegorySer.listAllCategory(keyword);
+		return listProducts;
 
 	}
 

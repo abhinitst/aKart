@@ -23,5 +23,13 @@ public class CategorySer {
 	public List<Category> getAllCategory() {
 		return categoryRepo.findAll();
 	}
+	
+	
+	 public List<Category> listAllCategory(String keyword) {
+	        if (keyword != null) {
+	            return categoryRepo.search(keyword);
+	        }
+	        return categoryRepo.findAll();
+	    }
 
 }
