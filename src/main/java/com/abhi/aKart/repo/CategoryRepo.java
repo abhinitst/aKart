@@ -11,7 +11,7 @@ import com.abhi.aKart.entities.Category;
 @Repository
 public interface CategoryRepo extends JpaRepository<Category, Integer> {
 
-	@Query("SELECT c FROM category c WHERE CONCAT(c.category_name, c.description) LIKE %?1%")
+	@Query("SELECT c FROM Category c WHERE CONCAT(c.categoryName,c.description) LIKE %?1%")
 	public List<Category> search(String keyword);
 
 }
