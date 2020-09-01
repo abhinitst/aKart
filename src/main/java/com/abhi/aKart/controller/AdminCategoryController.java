@@ -28,7 +28,6 @@ import com.abhi.aKart.Exception.categoryDataEmptyException;
 import com.abhi.aKart.Exception.imageSizeException;
 import com.abhi.aKart.dto.ProductDto;
 import com.abhi.aKart.entities.Category;
-import com.abhi.aKart.entities.Product;
 import com.abhi.aKart.service.CategorySer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
