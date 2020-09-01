@@ -5,6 +5,7 @@ public class ProductDto {
 	
 	private String productName;
 	private String color;
+	private String description;
 	private String categoryName;
 	public String getProductName() {
 		return productName;
@@ -23,5 +24,11 @@ public class ProductDto {
 	}
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

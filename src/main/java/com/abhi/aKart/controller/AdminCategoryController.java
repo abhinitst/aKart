@@ -8,9 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-
 import javax.imageio.ImageIO;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.abhi.aKart.Exception.categoryDataEmptyException;
 import com.abhi.aKart.Exception.imageSizeException;
+import com.abhi.aKart.dto.ProductDto;
 import com.abhi.aKart.entities.Category;
 import com.abhi.aKart.entities.Product;
 import com.abhi.aKart.service.CategorySer;
@@ -122,7 +121,7 @@ public class AdminCategoryController {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@GetMapping("/find/{categoryName}")
 	public ResponseEntity<Object> getAllProductByCategoryName(@PathVariable String categoryName) {
-		List<Product> allProductByCategoryName = cotegorySer.getAllProductByCategoryName(categoryName);
+		 List<ProductDto> allProductByCategoryName = cotegorySer.getAllProductByCategoryName(categoryName);
 		if (allProductByCategoryName.isEmpty())
 			return new ResponseEntity("No Result Found!", HttpStatus.BAD_REQUEST);
 		return new ResponseEntity(allProductByCategoryName, HttpStatus.OK);

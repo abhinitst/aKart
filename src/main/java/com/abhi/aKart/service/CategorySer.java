@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.abhi.aKart.dto.ProductDto;
 import com.abhi.aKart.entities.Category;
 import com.abhi.aKart.entities.Product;
 import com.abhi.aKart.repo.CategoryRepo;
@@ -37,7 +38,7 @@ public class CategorySer {
 
 	
 	
-	  public List<Product> getAllProductByCategoryName(String categoryName){
+	  public List<ProductDto> getAllProductByCategoryName(String categoryName){
 		  ArrayList<Product> l=new ArrayList<Product>();
 	  Category findByCategoryName = categoryRepo.findByCategoryName(categoryName);
 	  int categoryId = findByCategoryName.getCategoryId();
@@ -48,7 +49,20 @@ public class CategorySer {
 			  l.add(p);
 		  }
 	  }
-	return l;
+	  ArrayList<ProductDto> lOfDto=new ArrayList<ProductDto>();
+	  for(Product l2:l) {
+		  ProductDto dto=new ProductDto();
+		  int i=0;
+		 Product p= l.get(i);
+		  i++;
+		  dto.setColor(p.getColor());
+		  dto.setProductName(p.getProductName());
+		  dto.setDescription(p.getDescription());
+		  dto.setCategoryName(p.getCategory().getCategoryName());
+		  lOfDto.add(dto);
+	  }
+	return lOfDto;
+	
 	  
 	  }
 	 
