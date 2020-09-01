@@ -119,8 +119,8 @@ public class AdminCategoryController {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@GetMapping("/find/{categoryName}")
-	public ResponseEntity<Object> getAllProductByCategoryName(@PathVariable String categoryName) {
-		 List<ProductDto> allProductByCategoryName = cotegorySer.getAllProductByCategoryName(categoryName);
+	public ResponseEntity<Object> getAllProductByCategoryName(@PathVariable String categoryNamee) {
+		 List<ProductDto> allProductByCategoryName = cotegorySer.getAllProductByCategoryName(categoryNamee);
 		if (allProductByCategoryName.isEmpty())
 			return new ResponseEntity("No Result Found!", HttpStatus.BAD_REQUEST);
 		return new ResponseEntity(allProductByCategoryName, HttpStatus.OK);
