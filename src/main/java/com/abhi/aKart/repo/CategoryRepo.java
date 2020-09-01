@@ -13,5 +13,8 @@ public interface CategoryRepo extends JpaRepository<Category, Integer> {
 
 	@Query("SELECT c FROM Category c WHERE CONCAT(c.categoryName,c.description) LIKE %?1%")
 	public List<Category> search(String keyword);
-
+	
+	public Category findByCategoryName(String name);
+	
+	
 }

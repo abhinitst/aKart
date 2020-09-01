@@ -10,7 +10,6 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import javax.imageio.ImageIO;
-import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,8 +19,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.abhi.aKart.Exception.categoryDataEmptyException;
 import com.abhi.aKart.Exception.imageSizeException;
 import com.abhi.aKart.entities.Category;
+import com.abhi.aKart.entities.Product;
 import com.abhi.aKart.service.CategorySer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -108,11 +108,23 @@ public class AdminCategoryController {
 
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping("/search")
-	public List<Category> CategorySearch(@Param("keyword") String keyword) {
+	public ResponseEntity<Object> CategorySearch(@Param("keyword") String keyword) {
 		List<Category> listProducts = cotegorySer.listAllCategory(keyword);
-		return listProducts;
+		if (listProducts.isEmpty()) {
+			return new ResponseEntity("No Result Found!", HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity(listProducts, HttpStatus.OK);
 
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@GetMapping("/find/{categoryName}")
+	public ResponseEntity<Object> getAllProductByCategoryName(@PathVariable String categoryName) {
+		List<Product> allProductByCategoryName = cotegorySer.getAllProductByCategoryName(categoryName);
+		if (allProductByCategoryName.isEmpty())
+			return new ResponseEntity("No Result Found!", HttpStatus.BAD_REQUEST);
+		return new ResponseEntity(allProductByCategoryName, HttpStatus.OK);
+	}
 }
