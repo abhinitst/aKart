@@ -118,7 +118,7 @@ public class AdminCategoryController {
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@GetMapping("/find/{categoryName}")
+	@GetMapping("/find/{categoryNamee}")
 	public ResponseEntity<Object> getAllProductByCategoryName(@PathVariable String categoryNamee) {
 		 List<ProductDto> allProductByCategoryName = cotegorySer.getAllProductByCategoryName(categoryNamee);
 		if (allProductByCategoryName.isEmpty())
